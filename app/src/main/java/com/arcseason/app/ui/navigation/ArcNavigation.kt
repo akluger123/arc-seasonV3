@@ -7,7 +7,7 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue // FIXED: Required for 'by' state delegation
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
@@ -16,7 +16,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 
-// Connecting the actual UI screens generated in Phase 3
 import com.arcseason.app.ui.rules.RulesScreen
 import com.arcseason.app.ui.schedule.ScheduleScreen
 import com.arcseason.app.ui.macros.MacrosScreen
@@ -56,7 +55,6 @@ fun ArcNavigation(
                         selected = currentRoute == screen.route,
                         onClick = {
                             if (currentRoute != screen.route) {
-                                // FIXED: Replaced unresolved 'it' with 'screen.route'
                                 navController.navigate(screen.route) {
                                     popUpTo(navController.graph.findStartDestination().id) {
                                         saveState = true
