@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!-- Arc Season stores everything locally in Room; back it up so a device
+         switch doesn't wipe a teen's streaks, journals, and schedule. -->
+    <include domain="database" path="." />
+</full-backup-content>

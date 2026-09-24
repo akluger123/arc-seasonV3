@@ -1,0 +1,13 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Simple upward arc mark in Neon Emerald, standing in for a real icon -->
+    <path
+        android:fillColor="#00E676"
+        android:pathData="M24,74 C34,40 74,40 84,74 L72,74 C64,52 44,52 36,74 Z" />
+    <path
+        android:fillColor="#00E676"
+        android:pathData="M50,30 h8 v14 h-8 z" />
+</vector>

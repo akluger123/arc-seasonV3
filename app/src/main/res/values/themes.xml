@@ -1,0 +1,10 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base platform theme. Jetpack Compose (ArcSeasonTheme) owns the real
+         Material3 color scheme; this just keeps the window background dark
+         so there's no white flash before Compose takes over. -->
+    <style name="Theme.ArcSeason" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">#121212</item>
+        <item name="android:statusBarColor" tools:targetApi="21">#121212</item>
+        <item name="android:navigationBarColor" tools:targetApi="21">#121212</item>
+    </style>
+</resources>
