@@ -1,0 +1,43 @@
+name: Build Arc Season APK
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Install Android SDK platform 35 & build-tools
+        run: |
+          yes | sdkmanager --licenses > /dev/null 2>&1 || true
+          sdkmanager "platforms;android-35" "build-tools;35.0.0"
+
+      # gradle-wrapper.jar is compiled bytecode and isn't checked into this
+      # repo (no network access when it was generated to fetch the real
+      # one). The runner ships its own Gradle install, so we use that to
+      # write a legitimate, matching jar (and refresh gradlew/gradlew.bat)
+      # before the real build steps run. This is the same self-heal
+      # Android Studio does on first project sync.
+      - name: Bootstrap Gradle wrapper
+        run: gradle wrapper --gradle-version 8.9
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./gradlew
+
+      - name: Build debug APK
+        run: ./gradlew assembleDebug --stacktrace
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: arc-season-debug-apk
+          path: app/build/outputs/apk/debug/*.apk
